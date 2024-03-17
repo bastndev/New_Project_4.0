@@ -12,9 +12,19 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 
 const postResponse = await fetch(`http://localhost:3000/posts/${id}`);
-const post = await postResponse.json();
+const { title, description, content, created_at } = await postResponse.json();
 ---
 
 <DefaultLayout>
-  <h1>You here page {id} your title is {post.title}</h1>
+  <div>
+    <article class="text-black max-w-2xl mx-auto px-5 py-6 flex flex-col gap-2 rounded-2xl">
+      <img
+        src="https://images.pexels.com/photos/16652251/pexels-photo-16652251/free-photo-of-woman-standing-with-camera-among-flowers.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        alt=""
+      />
+      <h2 class="font-bold text-2xl">{title}</h2>
+      <p>{description}</p>
+      <p>{content}</p>
+    </article>
+  </div>
 </DefaultLayout>
