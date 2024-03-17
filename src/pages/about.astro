@@ -1,8 +1,10 @@
 ---
 import DefaultLayout from "../Layouts/DefaultLayout.astro";
+import { Button } from "../components/Button.jsx";
 export const prerender = false;
 ---
 
 <DefaultLayout>
   <h1>Welcome to About</h1>
+  <Button  client:visible/>
 </DefaultLayout>
