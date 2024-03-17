@@ -1,20 +1,23 @@
 ---
 const {
-  post: { title, description, content, created_at },
+  post: { title, description, content, created_at, id },
 } = Astro.props;
 ---
-
+<a href=`/posts/${id}`>
+  
 <article
-  class="bg-[#1b1c23] text-white max-w-sm px-5 py-6 flex flex-col gap-2 rounded-2xl"
+class="bg-[#1b1c23] text-white max-w-sm px-5 py-6 flex flex-col gap-2 rounded-2xl"
 >
-  <img
-    src="https://images.pexels.com/photos/16652251/pexels-photo-16652251/free-photo-of-woman-standing-with-camera-among-flowers.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    alt=""
-  />
-  <h2 class="font-bold text-2xl">{title}</h2>
-  <p class="text-gray-300">{description}</p>
-  <p>{content.slice(0, 100) + "..."}</p>
-  <p class="text-green-300">
-    {new Date(created_at).toLocaleDateString()} - 16 min read
-  </p>
+<img
+  src="https://images.pexels.com/photos/16652251/pexels-photo-16652251/free-photo-of-woman-standing-with-camera-among-flowers.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  alt=""
+/>
+<h2 class="font-bold text-2xl">{title}</h2>
+<p class="text-gray-300">{description}</p>
+<p>{content.slice(0, 100) + "..."}</p>
+<p class="text-green-300">
+  {new Date(created_at).toLocaleDateString()} - 16 min read
+</p>
 </article>
+
+</a>

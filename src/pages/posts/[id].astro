@@ -1,0 +1,20 @@
+---
+import DefaultLayout from "../../Layouts/DefaultLayout.astro";
+export async function getStaticPaths() {
+  const response = await fetch(" http://localhost:3000/posts");
+  const posts = await response.json();
+  return posts.map((post) => {
+    return {
+      params: { id: post.id },
+    };
+  });
+}
+const { id } = Astro.params;
+
+const postResponse = await fetch(`http://localhost:3000/posts/${id}`);
+const post = await postResponse.json();
+---
+
+<DefaultLayout>
+  <h1>You here page {id} your title is {post.title}</h1>
+</DefaultLayout>
