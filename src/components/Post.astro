@@ -1,6 +1,6 @@
 ---
 const {
-  post: { title, description },
+  post: { title, description, content, created_at },
 } = Astro.props;
 ---
 
@@ -13,11 +13,8 @@ const {
   />
   <h2 class="font-bold text-2xl">{title}</h2>
   <p class="text-gray-300">{description}</p>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quis laborum
-    iste consectetur explicabo impedit, totam veritatis sit, tempora mollitia,
-    aliquid sequi quaerat aspernatur tenetur eligendi quisquam soluta! Ipsam,
-    nobis?
+  <p>{content.slice(0, 100) + "..."}</p>
+  <p class="text-green-300">
+    {new Date(created_at).toLocaleDateString()} - 16 min read
   </p>
-  <p class="text-green-300">03/17/2024</p>
 </article>

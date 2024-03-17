@@ -1,5 +1,13 @@
 ---
 import Post from "../components/Post.astro";
+const response = await fetch(" http://localhost:3000/posts");
+const posts = await response.json();
+interface Post {
+	id: number;
+	title: string;
+	content: string;
+	// Agrega aquí cualquier otro campo que pueda tener un post
+}
 ---
 
 <html lang="en">
@@ -11,10 +19,11 @@ import Post from "../components/Post.astro";
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
-		<Post post={{ title: "Beautiful Girl", description: "Description" }} />
-		<Post post={{ title: "Secod image", description: "Description 2" }} />
-		<Post post={{ title: "Third image", description: "Description 3" }} />
-		<Post post={{ title: "Fourth image", description: "Description 4" }} />
+		<h1 class="text-center text-3xl font-bold mb-6 mt-3">My Post</h1>
+		<div
+			class="grid max-w-7x1 mx-auto w-full justify-center justify-items-center items-center gap-4 px-2 sm:grid:cols-2 lg:grid-cols-3"
+		>
+			{posts.map((post: Post) => <Post post={post} />)}
+		</div>
 	</body>
 </html>
