@@ -1,29 +1,26 @@
 ---
 import Post from "../components/Post.astro";
+import DefaultLayout from "../Layouts/DefaultLayout.astro";
 const response = await fetch(" http://localhost:3000/posts");
 const posts = await response.json();
 interface Post {
 	id: number;
 	title: string;
 	content: string;
-	// Agrega aquí cualquier otro campo que pueda tener un post
 }
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1 class="text-center text-3xl font-bold mb-6 mt-3">My Post</h1>
-		<div
-			class="grid max-w-7x1 mx-auto w-full justify-center justify-items-center items-center gap-4 px-2 sm:grid:cols-2 lg:grid-cols-3"
-		>
-			{posts.map((post: Post) => <Post post={post} />)}
-		</div>
-	</body>
-</html>
+<DefaultLayout>
+	<meta slot="header" charset="utf-8" />
+	<link slot="header" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta slot="header" name="viewport" content="width=device-width" />
+	<meta slot="header" name="generator" content={Astro.generator} />
+	<title slot="header">My Astro</title>
+
+	<h1 class="text-center text-3xl font-bold mb-6 mt-3">My Post</h1>
+	<div
+		class="grid max-w-7x1 mx-auto w-full justify-center justify-items-center items-center gap-4 px-2 sm:grid:cols-2 lg:grid-cols-3"
+	>
+		{posts.map((post: Post) => <Post post={post} />)}
+	</div>
+</DefaultLayout>
